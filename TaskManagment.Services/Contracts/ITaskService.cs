@@ -1,18 +1,12 @@
 ﻿namespace TaskManagment.Services.Contracts
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
+    using TaskManagement.DTOs;
+    using TaskManagment.Data;
 
     public interface ITaskService
     {
 
-        Task<IEnumerable<Task>> GetAllTasks();
-
-        Task<IEnumerable<Task>> GetTaskById();
-
+        Task<Task> AddTaskAsync(CreateTaskDto dto);
         
     }
 }

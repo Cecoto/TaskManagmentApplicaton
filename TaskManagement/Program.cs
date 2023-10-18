@@ -5,6 +5,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using TaskManagment.Data;
 using TaskManagment.Data.Models;
+using TaskManagment.Services;
+using TaskManagment.Services.Contracts;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,6 +17,8 @@ builder.Services.AddDbContext<TaskManagmentDbContext>(options =>
 {
     options.UseSqlServer(connectionString);
 });
+
+builder.Services.AddScoped<ITaskService, TaskService>();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

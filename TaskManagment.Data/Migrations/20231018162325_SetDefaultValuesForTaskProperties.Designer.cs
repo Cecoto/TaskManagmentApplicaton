@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TaskManagment.Data;
 
@@ -11,9 +12,10 @@ using TaskManagment.Data;
 namespace TaskManagment.Data.Migrations
 {
     [DbContext(typeof(TaskManagmentDbContext))]
-    partial class TaskManagmentDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231018162325_SetDefaultValuesForTaskProperties")]
+    partial class SetDefaultValuesForTaskProperties
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

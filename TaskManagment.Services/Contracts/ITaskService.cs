@@ -8,5 +8,11 @@
 
     public interface ITaskService
     {
+
+        Task<IEnumerable<Task>> GetAllTasks();
+
+        Task<IEnumerable<Task>> GetTaskById();
+
+        
     }
 }

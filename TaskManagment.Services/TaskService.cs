@@ -29,11 +29,19 @@
             return task;
         }
 
-        public async Task<IEnumerable<Task>> GetTasksAsync()
+        public async Task<IEnumerable<TaskDto>> GetTasksAsync()
         {
-            return  await this.context
-                .Tasks
-                .ToListAsync();
+           var tasks = await context.Tasks
+                .Select(t=> new TaskDto
+                {
+                    Id = t.Id,
+                    Title = t.Title,
+                    Description = t.Description,
+                    CreatedOn = t.CreatedOn.ToString("dd:MM:yy"),
+                    Type = t.Type.Name
+                }).ToArrayAsync();
+
+            return tasks;
         }
     }
 }

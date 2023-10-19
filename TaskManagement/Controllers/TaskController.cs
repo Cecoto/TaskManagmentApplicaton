@@ -12,16 +12,17 @@
     {
 
         private readonly ITaskService taskService;
-        private readonly ILogger logger;
+        private readonly ILogger<TaskController> logger;
 
         public TaskController(ITaskService _taskService,
-            ILogger _logger)
+            ILogger<TaskController> _logger)
         {
             this.taskService = _taskService;
             this.logger = _logger;
         }
 
         [HttpPost]
+        [Route("CreateTask")]
         public async Task<IActionResult> CreateTask([FromBody] CreateTaskDto dto)
         {
             if (dto == null)
@@ -38,13 +39,15 @@
 
             return Ok(task);
         }
+
         [HttpGet]
-        public IActionResult GetTasks()
+        [Route("GetAll")]
+        public async Task<IActionResult> GetTasks()
         {
 
             try
             {
-                var tasks = taskService.GetTasksAsync();
+                var tasks = await taskService.GetTasksAsync();
 
                 return Ok(tasks);
 

@@ -5,8 +5,8 @@
 
     public interface ITaskService
     {
-
         Task<Task> AddTaskAsync(CreateTaskDto dto);
+        Task<IEnumerable<Task>> GetTasksAsync();
         
     }
 }

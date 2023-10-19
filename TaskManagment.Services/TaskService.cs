@@ -1,5 +1,7 @@
 ﻿namespace TaskManagment.Services
 {
+    using Microsoft.EntityFrameworkCore;
+    using System.Collections.Generic;
     using System.Reflection;
     using TaskManagement.DTOs;
     using TaskManagment.Data;
@@ -27,5 +29,11 @@
             return task;
         }
 
+        public async Task<IEnumerable<Task>> GetTasksAsync()
+        {
+            return  await this.context
+                .Tasks
+                .ToListAsync();
+        }
     }
 }

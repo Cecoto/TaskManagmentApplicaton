@@ -12,16 +12,19 @@
     {
 
         private readonly ITaskService taskService;
+        private readonly ILogger logger;
 
-        public TaskController(ITaskService _taskService)
+        public TaskController(ITaskService _taskService,
+            ILogger _logger)
         {
-           this.taskService = _taskService;
+            this.taskService = _taskService;
+            this.logger = _logger;
         }
 
         [HttpPost]
         public async Task<IActionResult> CreateTask([FromBody] CreateTaskDto dto)
         {
-            if (dto== null)
+            if (dto == null)
             {
                 return BadRequest("Invalid task data.");
             }
@@ -33,7 +36,25 @@
 
             var task = await taskService.AddTaskAsync(dto);
 
-            return  Ok(task);
+            return Ok(task);
+        }
+        [HttpGet]
+        public IActionResult GetTasks()
+        {
+
+            try
+            {
+                var tasks = taskService.GetTasksAsync();
+
+                return Ok(tasks);
+
+            }
+            catch (Exception ex)
+            {
+
+                this.logger.LogError(ex, "An error occurred while retrieving tasks.");
+                return StatusCode(500, "An error occurred while processing your request.");
+            }
         }
     }
 }

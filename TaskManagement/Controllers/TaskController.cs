@@ -23,7 +23,7 @@
 
         [HttpPost]
         [Route("CreateTask")]
-        public async Task<IActionResult> CreateTask([FromBody] CreateTaskDto dto)
+        public async Task<IActionResult> CreateTask([FromBody] FormTaskDto dto)
         {
             if (dto == null)
             {
@@ -58,6 +58,42 @@
                 this.logger.LogError(ex, "An error occurred while retrieving tasks.");
                 return StatusCode(500, "An error occurred while processing your request.");
             }
+        }
+        [HttpGet]
+        [Route("EditTask/{taskId}")]
+        public async Task<IActionResult> GetTaskForEdit(Guid taskId)
+        {
+            FormTaskDto task = await taskService.GetTaskForEditByIdAsync(taskId);
+
+            if (task != null)
+            {
+                return Ok(task);
+            }
+
+            return NotFound();
+        }
+        [HttpPut]
+        [Route("EditTask/{taskId}")]
+        public async Task<IActionResult> EditTask(Guid taskId, [FromBody] FormTaskDto dto)
+        {
+            if (dto == null)
+            {
+                return BadRequest("Invalid task data.");
+            }
+
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var updatedTask = await taskService.EditTaskAsync(taskId, dto);
+
+            if (updatedTask == null)
+            {
+                return NotFound("Task not found");
+            }
+
+            return Ok(updatedTask);
         }
     }
 }

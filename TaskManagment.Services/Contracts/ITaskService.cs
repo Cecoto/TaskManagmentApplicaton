@@ -5,8 +5,9 @@
 
     public interface ITaskService
     {
-        Task<Task> AddTaskAsync(CreateTaskDto dto);
+        Task<Task> AddTaskAsync(FormTaskDto dto);
         Task<IEnumerable<TaskDto>> GetTasksAsync();
-        
+        Task<FormTaskDto> EditTaskAsync(Guid taskId, FormTaskDto dto);
+        Task<FormTaskDto> GetTaskForEditByIdAsync(Guid taskId);
     }
 }

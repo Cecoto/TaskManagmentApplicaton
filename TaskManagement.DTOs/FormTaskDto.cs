@@ -2,7 +2,7 @@
 {
     using System.ComponentModel.DataAnnotations;
 
-    public class CreateTaskDto
+    public class FormTaskDto
     {
         [Required]
         [StringLength(30,MinimumLength =3,ErrorMessage = "Title must be at least 3 characters long.")]

@@ -95,5 +95,17 @@
 
             return Ok(updatedTask);
         }
+        [HttpPost]
+        [Route("DeleteTask/{taskId}")]
+        public async Task<IActionResult>DeleteTask(Guid taskId)
+        {
+            bool isDeleted = await taskService.DeleteTaskByIdAsync(taskId);
+
+            if (isDeleted)
+            {
+                return Ok("Successfully deleted!");
+            }
+            return NotFound("Task not found!");
+        }
     }
 }

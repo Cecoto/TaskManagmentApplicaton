@@ -30,6 +30,19 @@
             return task;
         }
 
+        public async Task<bool> DeleteTaskByIdAsync(Guid taskId)
+        {
+            Task task = await context.Tasks.FindAsync(taskId);
+
+            if (task!=null)
+            {
+                task.IsActive = false;
+                await context.SaveChangesAsync();
+                return true;
+            }
+            return false;
+        }
+
         public async Task<FormTaskDto> EditTaskAsync(Guid taskId, FormTaskDto dto)
         {
             var existingTask = await context.Tasks.FindAsync(taskId);

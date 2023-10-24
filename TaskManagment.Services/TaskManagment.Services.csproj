@@ -7,6 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.24" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\TaskManagement.DTOs\TaskManagement.DTOs.csproj" />
     <ProjectReference Include="..\TaskManagment.Data.Models\TaskManagment.Data.Models.csproj" />
     <ProjectReference Include="..\TaskManagment.Data\TaskManagment.Data.csproj" />

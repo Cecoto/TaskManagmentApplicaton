@@ -1,8 +1,7 @@
 ﻿namespace TaskManagment.Data
 {
-    using TaskManagment.Data.Models;
-    using Microsoft.AspNet.Identity.EntityFramework;
     using Microsoft.EntityFrameworkCore;
+    using TaskManagment.Data.Models;
     public class TaskManagmentDbContext : DbContext
     {
 

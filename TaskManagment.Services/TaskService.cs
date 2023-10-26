@@ -67,6 +67,17 @@
             return null!;
         }
 
+        public async Task<IEnumerable<TaskTypeDto>> GetAllTaskTypesAsync()
+        {
+           return await context.TaskTypes
+                .Select(t => new TaskTypeDto()
+                {
+                    Id = t.Id,
+                    Name = t.Name,
+                })
+                .ToArrayAsync();
+        }
+
         public async Task<FormTaskDto> GetTaskForEditByIdAsync(Guid taskId)
         {
           Task task = await context.Tasks.FirstOrDefaultAsync(t => t.Id == taskId);

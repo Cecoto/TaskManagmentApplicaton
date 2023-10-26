@@ -4,6 +4,10 @@
 
     public class FormTaskDto
     {
+        public FormTaskDto()
+        {
+            this.TaskTypes = new HashSet<TaskTypeDto>();
+        }
         [Required]
         [StringLength(30,MinimumLength =3,ErrorMessage = "Title must be at least 3 characters long.")]
         public string Title { get; set; } = null!;
@@ -14,5 +18,7 @@
 
         [Required]
         public int TaskTypeId { get; set; }
+
+        public IEnumerable<TaskTypeDto> TaskTypes { get; set; }
     }
 }
